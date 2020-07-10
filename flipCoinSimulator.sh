@@ -8,10 +8,8 @@ do
 	r=$((RANDOM % 2))
 	if [ $r -eq $Heads ]
 	then
-		echo "Heads"
 		((NoOfWinsForHeads++))
 	else
-		echo "Tails"
 		((NoOfWinsForTails++))
 	fi
 done
@@ -22,5 +20,14 @@ elif [ $NoOfWinsForHeads -lt $NoOfWinsForTails ]
 then
 	echo "tails win by $(($NoOfWinsForTails-$NoOfWinsForHeads))"
 else
-	echo "it's tie"
+	while [ $(($NoOfWinsForHeads-$NoOfWinsForTails)) -ne 2 -a $(($NoOfWinsForHeads-$NoOfWinsForTails)) -ne -2 ]
+	do
+		r=$((RANDOM%2))
+	if [ $r -eq $Heads ]
+	then
+		((NoOfWinsForHeads++))
+	else
+		((NoOfWinsForTails++))
+	fi
+	done
 fi
