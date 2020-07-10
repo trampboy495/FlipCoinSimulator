@@ -3,9 +3,7 @@ Heads=1
 Tails=0
 NoOfWinsForHeads=0
 NoOfWinsForTails=0
-NoOfLoops=0
-read -p "enter the no of times to loop" n
-while [ $NoOfLoops -lt $n ]
+while [ $NoOfWinsForHeads -lt 21 -a $NoOfWinsForTails -lt 21  ]
 do
 	r=$((RANDOM % 2))
 	if [ $r -eq $Heads ]
@@ -16,7 +14,13 @@ do
 		echo "Tails"
 		((NoOfWinsForTails++))
 	fi
-	((NoOfLoops++))
 done
-echo "no of times Head Won is $NoOfWinsForHeads"
-echo "no of times Head Won is $NoOfWinsForTails"
+if [ $NoOfWinsForHeads -gt $NoOfWinsForTails ]
+then
+	echo "heads win by $(($NoOfWinsForHeads-$NoOfWinsForTails))"
+elif [ $NoOfWinsForHeads -lt $NoOfWinsForTails ]
+then
+	echo "tails win by $(($NoOfWinsForTails-$NoOfWinsForHeads))"
+else
+	echo "it's tie"
+fi
